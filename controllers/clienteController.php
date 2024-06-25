@@ -1,7 +1,6 @@
 <?php
 require_once("./models/Cliente.php");
 
-
 class ClienteController{
     //atributos-propiedades
     private $cliente;
@@ -17,5 +16,20 @@ class ClienteController{
     }
 
     ///faltarian los otros metodos
+
+    public function crear($numIdentificacion, $nombreCompania,$nombreContacto,$direccion,$email, $telefono, $telefono2,
+    $clave){
+        $this->cliente->setNumIdentificacion($numIdentificacion);
+        $this->cliente->setNombreCompania($nombreCompania);
+        $this->cliente->setNombreContacto($nombreContacto);
+        $this->cliente->setDireccion($direccion);
+        $this->cliente->setEmail($email);
+        $this->cliente->setTelefono($telefono);
+        $this->cliente->setTelefono2($telefono2);
+        $this->cliente->setClave($clave);
+
+        $this->cliente->create();
+        
+    }
 
 }

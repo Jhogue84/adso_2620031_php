@@ -1,5 +1,4 @@
 <?php
-
 $clienteController = new ClienteController();
 $listadoClientes = $clienteController->listar();
 
@@ -17,7 +16,8 @@ $listadoClientes = $clienteController->listar();
             <th>Telefono</th>
             <th>Telefono 2</th>
             <th>Clave</th>
-            <th>Opciones</th>
+            <th><a href="?vista=cliente/crear" class="btn-floating green btn-small"><i
+                        class="material-icons">add</i></a></th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +26,12 @@ $listadoClientes = $clienteController->listar();
         <tr>
             <?php for($j=0; $j < count($listadoClientes[$i]); $j++): ?>
             <td><?php echo $listadoClientes[$i][$j];?></td>
+
             <?php endfor?>
+            <td><a href="" class="btn-floating blue btn-small"><i class="material-icons">visibility</i></a>
+                <a href="" class="btn-floating orange btn-small"><i class="material-icons">edit</i></a>
+                <a href="" class="btn-floating red btn-small"><i class="material-icons">delete</i></a>
+            </td>
         </tr>
         <?php endfor?>
     </tbody>

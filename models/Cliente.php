@@ -31,10 +31,10 @@ class Cliente{
         return $this->numIdentificacion;
     }
 
-    public function setNumIdentificacion ($numIdentificacion ){
+    public function setNumIdentificacion ($numIdentificacion){
         $this->numIdentificacion =$numIdentificacion ;
     }
-
+    
     public function getNombreCompania(){
         return $this->nombreCompania;
     }
@@ -95,5 +95,10 @@ class Cliente{
     }
 
     //create, upadete, delete
+
+    public function create(){
+        $cadenaSql ="INSERT INTO clientes (numIdentificacion, nombreCompania, nombreContacto, direccion, email, telefono, telefono2, clave) VALUES ('$this->numIdentificacion', '$this->nombreCompania', '$this->nombreContacto', '$this->direccion', '$this->email', '$this->telefono', '$this->telefono2', '$this->clave')";
+        $this->conectarse->consultaSinRetorno($cadenaSql);
+    }
 
 }
