@@ -32,4 +32,24 @@ class ClienteController{
         
     }
 
+    public function listarPorId($id){
+        $this->cliente->setId($id);
+        $listado =$this->cliente->listById();
+        return $listado;
+    }
+
+    public function editar($id, $numIdentificacion, $nombreCompania,$nombreContacto,$direccion,$email, $telefono, $telefono2, $clave){
+        $this->cliente->setId($id);
+        $this->cliente->setNumIdentificacion($numIdentificacion);
+        $this->cliente->setNombreCompania($nombreCompania);
+        $this->cliente->setNombreContacto($nombreContacto);
+        $this->cliente->setDireccion($direccion);
+        $this->cliente->setEmail($email);
+        $this->cliente->setTelefono($telefono);
+        $this->cliente->setTelefono2($telefono2);
+        $this->cliente->setClave($clave);
+
+        $this->cliente->update();
+    }
+
 }

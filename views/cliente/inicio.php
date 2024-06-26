@@ -29,7 +29,8 @@ $listadoClientes = $clienteController->listar();
 
             <?php endfor?>
             <td><a href="" class="btn-floating blue btn-small"><i class="material-icons">visibility</i></a>
-                <a href="" class="btn-floating orange btn-small"><i class="material-icons">edit</i></a>
+                <a href="?vista=cliente/editar/<?php echo $listadoClientes[$i][0]?>"
+                    class="btn-floating orange btn-small"><i class="material-icons">edit</i></a>
                 <a href="" class="btn-floating red btn-small"><i class="material-icons">delete</i></a>
             </td>
         </tr>

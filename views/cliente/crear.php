@@ -1,8 +1,7 @@
 <?php
     $clienteController = new ClienteController();
     if(isset($_POST["crear"])){
-        echo "Se creo el cliente con exito.";
-
+        
         $numIdentificacion= $_POST["numIdentificacion"];
         $nombreCompania = $_POST["nombreCompania"];
         $nombreContacto = $_POST["nombreContacto"];
@@ -13,7 +12,10 @@
         $clave = $_POST["clave"];
 
         $clienteController->crear($numIdentificacion, $nombreCompania,$nombreContacto,$direccion,$email, $telefono, $telefono2,
-        $clave);      
+        $clave);
+        echo "Se creo el cliente con exito.";
+        //redireccionar a la pagina del listado, inicio
+        header("Location: ?vista=cliente/inicio");
 
     }
 

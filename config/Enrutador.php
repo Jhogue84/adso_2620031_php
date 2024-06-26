@@ -13,6 +13,9 @@ class Enrutador{
             case 'crear':
                 require_once("./views/". $carpetaArchivo[0]. "/".$carpetaArchivo[1].".php");
                 break;
+            case 'editar':
+                require_once("./views/". $carpetaArchivo[0]. "/".$carpetaArchivo[1].".php");
+                break;
             default:
             require_once("./views/pageNotFound.php");
                 break;

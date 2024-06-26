@@ -101,4 +101,17 @@ class Cliente{
         $this->conectarse->consultaSinRetorno($cadenaSql);
     }
 
+    public function listById(){
+        $cadenaSql = "SELECT * FROM clientes WHERE id = $this->id";
+        $resultado = $this->conectarse->consultaConRetorno($cadenaSql);
+        $datos = $resultado->fetch_assoc();
+        return $datos;
+    }
+
+    public function update(){
+        $cadenaSql ="UPDATE clientes SET numIdentificacion = '$this->numIdentificacion', nombreCompania = '$this->nombreCompania', nombreContacto = '$this->nombreContacto', direccion = '$this->direccion', email ='$this->email', telefono = '$this->telefono', telefono2 = '$this->telefono2', clave = '$this->clave' WHERE id = $this->id";
+        echo $cadenaSql;
+        $this->conectarse->consultaSinRetorno($cadenaSql);
+    }
+
 }
