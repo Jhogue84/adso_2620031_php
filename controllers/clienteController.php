@@ -52,4 +52,9 @@ class ClienteController{
         $this->cliente->update();
     }
 
+    public function eliminar($id){
+        $this->cliente->setId($id);
+        $this->cliente->delete();
+    }
+
 }

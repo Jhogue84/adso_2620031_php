@@ -88,7 +88,8 @@ class Cliente{
 
     //listar los datos
     public function listAll(){
-        $cadenaSql = "SELECT * FROM clientes";    
+        //$cadenaSql = "SELECT * FROM clientes";    
+        $cadenaSql = "CALL select_clientes";    
         $resultado = $this->conectarse->consultaConRetorno($cadenaSql);
         $datos = $resultado->fetch_all();
         return $datos;
@@ -97,7 +98,8 @@ class Cliente{
     //create, upadete, delete
 
     public function create(){
-        $cadenaSql ="INSERT INTO clientes (numIdentificacion, nombreCompania, nombreContacto, direccion, email, telefono, telefono2, clave) VALUES ('$this->numIdentificacion', '$this->nombreCompania', '$this->nombreContacto', '$this->direccion', '$this->email', '$this->telefono', '$this->telefono2', '$this->clave')";
+        $cadenaSql ="INSERT INTO clientes (numIdentificacion, nombreCompania, nombreContacto, direccion, email, telefono, telefono2, clave) VALUES ('$this->numIdentificacion', '$this->nombreCompania', '$this->nombreContacto', '$this->direccion', '$this->email', '$this->telefono', '$this->telefono2', '". md5($this->clave)."')";
+        //ECHO $cadenaSql;
         $this->conectarse->consultaSinRetorno($cadenaSql);
     }
 
@@ -109,9 +111,25 @@ class Cliente{
     }
 
     public function update(){
-        $cadenaSql ="UPDATE clientes SET numIdentificacion = '$this->numIdentificacion', nombreCompania = '$this->nombreCompania', nombreContacto = '$this->nombreContacto', direccion = '$this->direccion', email ='$this->email', telefono = '$this->telefono', telefono2 = '$this->telefono2', clave = '$this->clave' WHERE id = $this->id";
-        echo $cadenaSql;
+        $cadenaSql ="UPDATE clientes SET numIdentificacion = '$this->numIdentificacion', nombreCompania = '$this->nombreCompania', nombreContacto = '$this->nombreContacto', direccion = '$this->direccion', email ='$this->email', telefono = '$this->telefono', telefono2 = '$this->telefono2', clave = '".  md5($this->clave) ."' WHERE id = $this->id";
         $this->conectarse->consultaSinRetorno($cadenaSql);
     }
+    
+    public function delete(){
+        $cadenaSql ="DELETE FROM clientes WHERE id = $this->id";
+        //echo $cadenaSql . "<br>";
+        $this->conectarse->consultaSinRetorno($cadenaSql);
+    }
+    public function validateClient(){
+        $cadenaSql = "
+        SELECT * FROM clientes WHERE numIdentificacion = $this->numIdentificacion AND clave= '".  md5($this->clave) ."'";
+        //echo $cadenaSql;
+        $resultado = $this->conectarse->consultaConRetorno($cadenaSql);
+        if($resultado->num_rows >0){
+            $datos = $resultado->fetch_assoc();
+        }else $datos=NULL;
+        
+        return $datos;
+    } 
 
 }

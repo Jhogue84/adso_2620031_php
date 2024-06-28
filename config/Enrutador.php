@@ -6,6 +6,7 @@ class Enrutador{
     public function CargarVista($vista){
         //echo $vista;//cliente/inicio
         $carpetaArchivo = explode("/",$vista);
+        
         switch ($carpetaArchivo[1]) {
             case 'inicio':
                require_once("./views/". $carpetaArchivo[0]. "/".$carpetaArchivo[1].".php");
@@ -14,6 +15,15 @@ class Enrutador{
                 require_once("./views/". $carpetaArchivo[0]. "/".$carpetaArchivo[1].".php");
                 break;
             case 'editar':
+                require_once("./views/". $carpetaArchivo[0]. "/".$carpetaArchivo[1].".php");
+                break;
+            case 'eliminar':
+                require_once("./views/". $carpetaArchivo[0]. "/".$carpetaArchivo[1].".php");
+                break;
+            case 'login':
+                require_once("./views/". $carpetaArchivo[0]. "/".$carpetaArchivo[1].".php");
+                break;
+            case 'logout':
                 require_once("./views/". $carpetaArchivo[0]. "/".$carpetaArchivo[1].".php");
                 break;
             default:
