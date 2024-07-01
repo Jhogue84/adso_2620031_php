@@ -1,6 +1,6 @@
 <nav class="colorSena">
     <div class="nav-wrapper">
-        <a href="index.php" class="brand-logo">Bienvenido
+        <a href="?vista=/inicio" class="brand-logo">Bienvenido
             <?php echo $_SESSION["usuarioSesion"] . " " . $_SESSION["perfilSesion"]?></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
 

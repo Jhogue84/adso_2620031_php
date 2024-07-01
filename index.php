@@ -3,12 +3,12 @@ session_start();
 require_once("./config/Enrutador.php");
 require_once("./controllers/sesionController.php");
 require_once("./controllers/clienteController.php");
-
+require_once("./controllers/productoController.php");
+//require_once("./controllers/proveedorController.php");
+//require_once("./controllers/categoriaController.php");
 ?>
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -21,34 +21,47 @@ require_once("./controllers/clienteController.php");
 </head>
 
 <body>
-    <?php 
-            if(isset($_SESSION["usuarioSesion"])){
-                require_once("./views/menu.php");
-            }else{
-                require_once("./views/menu2.php");
-            }
-            
-           
-        ?>
+    <?php
+    if (isset($_SESSION["usuarioSesion"])) {
+        require_once("./views/menu.php");
+        //echo "existe session";
+    } else {
+        require_once("./views/menu2.php");
+        //echo "no hay sesion";
+    }
+    ?>
     <main class="container">
         <?php
         $enrutador = new Enrutador();
-        if(isset($_GET["vista"])){
-            
-            $enrutador->CargarVista($_GET["vista"]);
-        }else{
-            
-    ?>
-        <p>Pagina sin iniciar sesion, para todos los usuarios</p>
-
-        <?php
+        //validar si existe la vista y existe sesion
+        if (isset($_SESSION["usuarioSesion"])) {
+            if (isset($_GET["vista"])) {
+                //echo "<p>pagina con sesion, y con vista</p>";
+                $enrutador->CargarVista($_GET["vista"], $_SESSION["usuarioSesion"]);
+            } else {
+                //echo "<p>pagina con sesion, y sin vista</p>";
+            }
+        } else {
+            if (isset($_GET["vista"])) {
+                //echo "<p>pagina sin sesion, pero con vista</p>";
+                $enrutador->CargarVista($_GET["vista"], null);
+            } else {
+                echo "<p class='flow-text'>Pagina de inicio principal para todos los usuarios sin iniciar sesion</p>";
+            }
         }
-   ?>
+        ?>
     </main>
 
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./js/miScript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var elems = document.querySelectorAll("select");
+            var instances = M.FormSelect.init(elems);
+        });
+    </script>
 </body>
 
 </html>
